@@ -1,0 +1,25 @@
+<h1>Todo List with Flask</h1>
+<form method='POST'>
+    {{form.hidden_tag()}}
+    {{form.title.label}}: <br>
+    {{form.title}} <br>
+    {{form.description.label}} <br>
+    {{form.description}} <br>
+    {{form.submit}}
+</form>
+<h2>The Tasks</h2>
+
+{% if tasks %}
+    {%for task in tasks%}
+        <h3>Title: {{task.title}}</h3>
+        
+        <p>Description: {{task.description}}</p>
+        <div>
+            <a href="{{ url_for('remove', index=task.id) }}">Remove</a>
+            <a href="">Update</a>
+        </div>
+        
+    {% endfor%}
+{% else %}
+    <p>No new tasks</p>
+{%endif%}
